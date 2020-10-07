@@ -12,8 +12,15 @@ so I decided to make my own application for this purpose.
 ## Planned Features
 
 Some features I have planned so far for this project include:
-- Categorize expenses
 - Specify purchase dates
-- See a monthly overview of spending
-- Set a monthly budget
 - Warn the user once they reach a user-defined threshold of spending within their budget
+- A more detailed overview of monthly spending, including graphs and other visualizations
+- Edit expenses/expense categories that have already been tracked
+- Allow the user to add custom categories for expenses
+
+## User Stories
+
+- As a user, I want to be able to add a purchase to my monthly record
+- As a user, I want to be able to view my expenses across a month
+- As a user, I want to be able to set a monthly budget
+- As a user, I want to be able to categorize my expenses
