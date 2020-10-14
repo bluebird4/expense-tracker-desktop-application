@@ -3,8 +3,6 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.Month;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MonthlyRecordTest {
@@ -144,9 +142,9 @@ public class MonthlyRecordTest {
 
     @Test
     public void testPrintNonEmptyRecord() {
-        String printFirst = "Gifts: birthday present ($100.00)\n";
-        String printSecond = "Entertainment: concert ticket ($25.00)\n";
-        String printThird = "Groceries: weekly groceries ($75.00)\n";
+        String printFirst = "[1] Gifts: birthday present ($100.00)\n";
+        String printSecond = "[2] Entertainment: concert ticket ($25.00)\n";
+        String printThird = "[3] Groceries: weekly groceries ($75.00)\n";
         assertEquals(printFirst + printSecond + printThird, r.printRecord());
     }
 
@@ -173,6 +171,7 @@ public class MonthlyRecordTest {
         r.removeExpense(e2);
         r.removeExpense(e3);
         Expense big = new Expense(MonthlyRecord.DEFAULT_BUDGET, d1, "large purchase", "Miscellaneous");
+        r.addExpense(big);
         assertFalse(r.isOverBudget());
     }
 
@@ -186,6 +185,12 @@ public class MonthlyRecordTest {
         assertEquals(MonthlyRecord.DEFAULT_BUDGET, r.getBudget());
         r.setBudget(250000);
         assertEquals(250000, r.getBudget());
+    }
+
+    @Test
+    public void testGetExpense() {
+        Expense result = r.getExpense(1);
+        assertEquals(e2, result);
     }
 
 }

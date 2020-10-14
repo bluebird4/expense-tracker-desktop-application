@@ -109,10 +109,13 @@ public class MonthlyRecord {
         if (record.size() == 0) {
             return "There are no expenses tracked this month.\n";
         } else {
-            StringBuilder s = new StringBuilder();
+            StringBuilder s = new StringBuilder(new StringBuilder());
+            int count = 1;
             for (Expense e : record) {
                 String cost = " (" + e.toDollars() + ")";
-                s.append(e.getCategory()).append(": ").append(e.getLabel()).append(cost).append("\n");
+                String counter = "[" + count + "] ";
+                s.append(counter).append(e.getCategory()).append(": ").append(e.getLabel()).append(cost).append("\n");
+                count++;
             }
             return s.toString();
         }
@@ -144,6 +147,11 @@ public class MonthlyRecord {
     // EFFECTS:  removes an expense being tracked on the record
     public void removeExpense(Expense e) {
         record.remove(e);
+    }
+
+    // EFFECTS: returns expense at the given position
+    public Expense getExpense(int position) {
+        return record.get(position);
     }
 
     // EFFECTS: returns the number of expenses in the record
