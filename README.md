@@ -24,3 +24,5 @@ Some features I have planned so far for this project include:
 - As a user, I want to be able to view my expenses across a month
 - As a user, I want to be able to set a monthly budget
 - As a user, I want to be able to categorize my expenses
+- As a user, I want my monthly record to be saved automatically to file after making changes
+- As a user, I want my monthly record to be loaded automatically from file at application startup
