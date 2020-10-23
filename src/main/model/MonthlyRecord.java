@@ -20,7 +20,7 @@ public class MonthlyRecord {
 
     // EFFECTS: returns the highest expense if list is not empty, otherwise returns null
     public Expense highestExpense() {
-        Expense highest = new Expense(0, null, "", Category.NONE);
+        Expense highest = new Expense(0, null, "", Category.MISCELLANEOUS);
 
         for (Expense e : record) {
             if (e.getCost() > highest.getCost()) {
@@ -37,7 +37,7 @@ public class MonthlyRecord {
 
     // EFFECTS: returns the lowest expense if list is not empty, otherwise returns null
     public Expense lowestExpense() {
-        Expense lowest = new Expense(2147483647, null, "", Category.NONE);
+        Expense lowest = new Expense(2147483647, null, "", Category.MISCELLANEOUS);
 
         for (Expense e : record) {
             if (e.getCost() < lowest.getCost()) {

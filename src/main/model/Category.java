@@ -1,5 +1,7 @@
 package model;
 
+// A list of categories that expenses can be put in
+// Category ideas taken from: https://localfirstbank.com/article/budgeting-101-personal-budget-categories/
 public enum Category {
     BILLS,
     CLOTHING,
@@ -11,7 +13,6 @@ public enum Category {
     HOUSING,
     INSURANCE,
     MISCELLANEOUS,
-    NONE,
     PERSONAL,
     SHOPPING,
     SUPPLIES,
