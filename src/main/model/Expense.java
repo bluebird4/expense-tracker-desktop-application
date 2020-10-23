@@ -5,12 +5,12 @@ public class Expense {
     private int cost;               // The cost of the expense in cents
     private Date date;              // The date the expense was made on
     private String label;           // A custom label the user may give to the expense
-    private String category;        // The category of the expense
+    private Category category;        // The category of the expense
 
 
     // REQUIRES: p > 0
     // EFFECTS:  create a new expense to track with given price in cents made on given date
-    public Expense(int p, Date d, String l, String c) {
+    public Expense(int p, Date d, String l, Category c) {
         cost = p;
         date = d;
         label = l;
@@ -38,8 +38,8 @@ public class Expense {
     }
 
     // EFFECTS: returns true if expense is of given category, otherwise returns false
-    public boolean isOfCategory(String c) {
-        return c.equals(category);
+    public boolean isOfCategory(Category c) {
+        return c == category;
     }
 
     // EFFECTS: return value of expense in dollars as a string
@@ -66,7 +66,7 @@ public class Expense {
         label = l;
     }
 
-    public void setCategory(String c) {
+    public void setCategory(Category c) {
         category = c;
     }
 
@@ -82,7 +82,7 @@ public class Expense {
         return label;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 

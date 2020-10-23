@@ -20,9 +20,9 @@ public class MonthlyRecordTest {
         d1 = new Date(2020, 4, 4);
         d2 = new Date(2020, 4, 12);
         d3 = new Date(2020, 4 ,24);
-        e1 = new Expense(10000, d1, "birthday present", "Gifts");
-        e2 = new Expense(2500, d2, "concert ticket", "Entertainment");
-        e3 = new Expense(7500, d3, "weekly groceries", "Groceries");
+        e1 = new Expense(10000, d1, "birthday present", Category.GIFTS);
+        e2 = new Expense(2500, d2, "concert ticket", Category.ENTERTAINMENT);
+        e3 = new Expense(7500, d3, "weekly groceries", Category.FOOD);
         r.addExpense(e1);
         r.addExpense(e2);
         r.addExpense(e3);
@@ -92,22 +92,22 @@ public class MonthlyRecordTest {
 
     @Test
     public void testFilterCategoryNone() {
-        MonthlyRecord filtered = r.filterCategory("Food");
+        MonthlyRecord filtered = r.filterCategory(Category.TRANSPORTATION);
         assertEquals(0, filtered.size());
     }
 
     @Test
     public void testFilterCategoryOne() {
-        MonthlyRecord filtered = r.filterCategory("Entertainment");
+        MonthlyRecord filtered = r.filterCategory(Category.ENTERTAINMENT);
         assertEquals(1, filtered.size());
     }
 
     @Test
     public void testFilterCategoryTwo() {
         Date d = new Date(2020, 4, 19);
-        Expense e = new Expense(5000, d, "birthday present", "Gifts");
+        Expense e = new Expense(5000, d, "birthday present", Category.GIFTS);
         r.addExpense(e);
-        MonthlyRecord filtered = r.filterCategory("Gifts");
+        MonthlyRecord filtered = r.filterCategory(Category.GIFTS);
         assertEquals(2, filtered.size());
     }
 
@@ -126,7 +126,7 @@ public class MonthlyRecordTest {
     @Test
     public void testFilterLabelTwo() {
         Date d = new Date(2020, 4, 19);
-        Expense e = new Expense(5000, d, "birthday present", "Gifts");
+        Expense e = new Expense(5000, d, "birthday present", Category.GIFTS);
         r.addExpense(e);
         MonthlyRecord filtered = r.filterLabel("birthday present");
         assertEquals(2, filtered.size());
@@ -142,15 +142,15 @@ public class MonthlyRecordTest {
 
     @Test
     public void testPrintNonEmptyRecord() {
-        String printFirst = "[1] Gifts: birthday present ($100.00)\n";
-        String printSecond = "[2] Entertainment: concert ticket ($25.00)\n";
-        String printThird = "[3] Groceries: weekly groceries ($75.00)\n";
+        String printFirst = "[1] GIFTS: birthday present ($100.00)\n";
+        String printSecond = "[2] ENTERTAINMENT: concert ticket ($25.00)\n";
+        String printThird = "[3] FOOD: weekly groceries ($75.00)\n";
         assertEquals(printFirst + printSecond + printThird, r.printRecord());
     }
 
     @Test
     public void testIsOverBudgetTypical() {
-        Expense big = new Expense(MonthlyRecord.DEFAULT_BUDGET, d1, "large purchase", "Miscellaneous");
+        Expense big = new Expense(MonthlyRecord.DEFAULT_BUDGET, d1, "large purchase", Category.MISCELLANEOUS);
         r.addExpense(big);
         assertTrue(r.isOverBudget());
     }
@@ -160,7 +160,7 @@ public class MonthlyRecordTest {
         r.removeExpense(e1);
         r.removeExpense(e2);
         r.removeExpense(e3);
-        Expense big = new Expense(MonthlyRecord.DEFAULT_BUDGET + 1, d1, "large purchase", "Miscellaneous");
+        Expense big = new Expense(MonthlyRecord.DEFAULT_BUDGET + 1, d1, "large purchase", Category.MISCELLANEOUS);
         r.addExpense(big);
         assertTrue(r.isOverBudget());
     }
@@ -170,7 +170,7 @@ public class MonthlyRecordTest {
         r.removeExpense(e1);
         r.removeExpense(e2);
         r.removeExpense(e3);
-        Expense big = new Expense(MonthlyRecord.DEFAULT_BUDGET, d1, "large purchase", "Miscellaneous");
+        Expense big = new Expense(MonthlyRecord.DEFAULT_BUDGET, d1, "large purchase", Category.MISCELLANEOUS);
         r.addExpense(big);
         assertFalse(r.isOverBudget());
     }

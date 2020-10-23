@@ -12,7 +12,7 @@ class ExpenseTest {
     @BeforeEach
     public void runBefore() {
         d = new Date(2020, 10, 1);
-        e = new Expense(1000, d, "test purchase", "Miscellaneous");
+        e = new Expense(1000, d, "test purchase", Category.MISCELLANEOUS);
     }
 
     @Test
@@ -21,7 +21,7 @@ class ExpenseTest {
 
         assertEquals(1000, e.getCost());
         assertEquals("test purchase", e.getLabel());
-        assertEquals("Miscellaneous", e.getCategory());
+        assertEquals(Category.MISCELLANEOUS, e.getCategory());
 
         assertEquals(2020, date.getYear());
         assertEquals(10, date.getMonth());
@@ -109,12 +109,12 @@ class ExpenseTest {
 
     @Test
     public void testIsOfCategoryTrue() {
-        assertTrue(e.isOfCategory("Miscellaneous"));
+        assertTrue(e.isOfCategory(Category.MISCELLANEOUS));
     }
 
     @Test
     public void testIsOfCategoryFalse() {
-        assertFalse(e.isOfCategory("Entertainment"));
+        assertFalse(e.isOfCategory(Category.ENTERTAINMENT));
     }
 
     @Test
@@ -141,8 +141,8 @@ class ExpenseTest {
 
     @Test
     public void testSetCategory() {
-        e.setCategory("Entertainment");
-        assertEquals("Entertainment", e.getCategory());
+        e.setCategory(Category.ENTERTAINMENT);
+        assertEquals(Category.ENTERTAINMENT, e.getCategory());
     }
 
     @Test
@@ -152,7 +152,7 @@ class ExpenseTest {
 
     @Test
     public void testToDollarsNoLeadingZeros() {
-        Expense e = new Expense(1025, d, "", "");
+        Expense e = new Expense(1025, d, "", Category.MISCELLANEOUS);
         assertEquals("$10.25", e.toDollars());
     }
 

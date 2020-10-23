@@ -100,12 +100,9 @@ public class ExpenseTracker {
         System.out.print("Enter a label for this expense: ");
         String label = input.next();
 
-        System.out.print("Enter a category for this expense: ");
-        String category = input.next();
-        while (category.length() == 0) {
-            System.out.println("Please enter a category.\n");
-            category = input.next();
-        }
+        System.out.print("Please choose a category for this expense:\n");
+        printCategoryMenu();
+        Category category = Category.values()[input.nextInt() - 1];
 
         int costInCents = (int) (cost * 100);
         e = new Expense(costInCents, date, label, category);
@@ -150,5 +147,17 @@ public class ExpenseTracker {
     private void viewRecord() {
         System.out.println("Here is the current record for this month:\n");
         System.out.println(record.printRecord());
+    }
+
+    // MODIFIES: this
+    // EFFECTS:  prints the list of categories that can be selected for an expense
+    // method partly taken from readCategory() in JsonSerializationDemo
+    private void printCategoryMenu() {
+        int num = 1;
+
+        for (Category c : Category.values()) {
+            System.out.println("[" + num + "] " + c);
+            num++;
+        }
     }
 }
