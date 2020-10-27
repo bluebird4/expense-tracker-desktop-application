@@ -64,11 +64,9 @@ public class ExpenseTracker {
     // MODIFIES: this
     // EFFECTS:  initializes new record
     private void initializeApp() {
-        record = new MonthlyRecord();
+        record = new MonthlyRecord(10, 2020);
         input = new Scanner(System.in);
     }
-
-
 
     // EFFECTS: displays menu of options to user
     // method layout taken and edited from TellerApp

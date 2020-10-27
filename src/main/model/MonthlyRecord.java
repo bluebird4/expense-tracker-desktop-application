@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 // Represents a record of expenses tracked in a given calendar month with a budget
@@ -9,13 +10,17 @@ public class MonthlyRecord {
 
     private List<Expense> record;
     private int budget;
+    private int month;
+    private int year;
 
 
     // REQUIRES: all expenses should be in the same month
-    // EFFECTS:  creates a list of expenses in a given calendar month with default budget
-    public MonthlyRecord() {
+    // EFFECTS:  creates a list of expenses in a given calendar month and year with default budget
+    public MonthlyRecord(int month, int year) {
         record = new ArrayList<>();
         budget = DEFAULT_BUDGET;
+        this.month = month;
+        this.year = year;
     }
 
     // EFFECTS: returns the highest expense if list is not empty, otherwise returns null
@@ -54,7 +59,7 @@ public class MonthlyRecord {
 
     // EFFECTS:  returns a list of expenses with cost >= threshold
     public MonthlyRecord aboveThreshold(int threshold) {
-        MonthlyRecord above = new MonthlyRecord();
+        MonthlyRecord above = new MonthlyRecord(0, 0);
 
         for (Expense e : record) {
             if (e.isAboveThreshold(threshold)) {
@@ -67,7 +72,7 @@ public class MonthlyRecord {
 
     // EFFECTS:  returns a list of expenses with costs <= threshold
     public MonthlyRecord belowThreshold(int threshold) {
-        MonthlyRecord below = new MonthlyRecord();
+        MonthlyRecord below = new MonthlyRecord(0, 0);
 
         for (Expense e : record) {
             if (e.isBelowThreshold(threshold)) {
@@ -80,7 +85,7 @@ public class MonthlyRecord {
 
     // EFFECTS:  returns a list of expenses with the given category
     public MonthlyRecord filterCategory(Category c) {
-        MonthlyRecord filtered = new MonthlyRecord();
+        MonthlyRecord filtered = new MonthlyRecord(0, 0);
 
         for (Expense e : record) {
             if (e.isOfCategory(c)) {
@@ -93,7 +98,7 @@ public class MonthlyRecord {
 
     // EFFECTS:  returns a list of expenses with the given label
     public MonthlyRecord filterLabel(String l) {
-        MonthlyRecord filtered = new MonthlyRecord();
+        MonthlyRecord filtered = new MonthlyRecord(0, 0);
 
         for (Expense e : record) {
             if (e.getLabel().equals(l)) {
@@ -154,6 +159,11 @@ public class MonthlyRecord {
         return record.get(position);
     }
 
+    // EFFECTS: returns an unmodifiable list of expenses in this record
+    public List<Expense> getExpenses() {
+        return Collections.unmodifiableList(record);
+    }
+
     // EFFECTS: returns the number of expenses in the record
     public int size() {
         int count = 0;
@@ -171,6 +181,14 @@ public class MonthlyRecord {
 
     public void setBudget(int b) {
         budget = b;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getMonth() {
+        return month;
     }
 
 }

@@ -2,9 +2,9 @@ package model;
 
 // Represents a tracked expense
 public class Expense {
-    private int cost;               // The cost of the expense in cents
-    private Date date;              // The date the expense was made on
-    private String label;           // A custom label the user may give to the expense
+    private int cost;                 // The cost of the expense in cents
+    private Date date;                // The date the expense was made on
+    private String label;             // A custom label the user may give to the expense
     private Category category;        // The category of the expense
 
 

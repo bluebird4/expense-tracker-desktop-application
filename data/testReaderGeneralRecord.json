@@ -1,0 +1,19 @@
+{
+  "expenses": [
+    {
+      "cost": 1000,
+      "day": 12,
+      "label": "amazon purchase",
+      "category": "SHOPPING"
+    },
+    {
+      "cost": 1500,
+      "day": 21,
+      "label": "lunch",
+      "category": "FOOD"
+    }
+  ],
+  "month": 10,
+  "year": 2020,
+  "budget": 200000
+}

@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MonthlyRecordTest {
@@ -16,7 +18,7 @@ public class MonthlyRecordTest {
 
     @BeforeEach
     public void runBefore() {
-        r = new MonthlyRecord();
+        r = new MonthlyRecord(10, 2020);
         d1 = new Date(2020, 4, 4);
         d2 = new Date(2020, 4, 12);
         d3 = new Date(2020, 4 ,24);
@@ -26,6 +28,14 @@ public class MonthlyRecordTest {
         r.addExpense(e1);
         r.addExpense(e2);
         r.addExpense(e3);
+    }
+
+    @Test
+    public void testConstructor() {
+        assertEquals(3, r.size());
+        assertEquals(MonthlyRecord.DEFAULT_BUDGET, r.getBudget());
+        assertEquals(10, r.getMonth());
+        assertEquals(2020, r.getYear());
     }
 
     @Test
@@ -191,6 +201,29 @@ public class MonthlyRecordTest {
     public void testGetExpense() {
         Expense result = r.getExpense(1);
         assertEquals(e2, result);
+    }
+
+    @Test
+    public void testGetExpenses() {
+        List<Expense> list = r.getExpenses();
+        Expense e1 = list.get(0);
+        Expense e2 = list.get(1);
+        Expense e3 = list.get(2);
+
+        assertEquals(3, list.size());
+        assertEquals("birthday present", e1.getLabel());
+        assertEquals("concert ticket", e2.getLabel());
+        assertEquals("weekly groceries", e3.getLabel());
+    }
+
+    @Test
+    public void testGetYear() {
+        assertEquals(2020, r.getYear());
+    }
+
+    @Test
+    public void testGetMonth() {
+        assertEquals(10, r.getMonth());
     }
 
 }
