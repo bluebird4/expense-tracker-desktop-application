@@ -11,7 +11,7 @@ public class JsonTest {
 
         Date expenseDate = expense.getDate();
         int day = date.getDay();
-        int month = date.getMonth();
+        Month month = date.getMonth();
         int year = date.getYear();
         assertEquals(day, expenseDate.getDay());
         assertEquals(month, expenseDate.getMonth());

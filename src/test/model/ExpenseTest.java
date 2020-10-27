@@ -11,7 +11,7 @@ class ExpenseTest {
 
     @BeforeEach
     public void runBefore() {
-        d = new Date(2020, 10, 1);
+        d = new Date(2020, Month.OCTOBER, 1);
         e = new Expense(1000, d, "test purchase", Category.MISCELLANEOUS);
     }
 
@@ -24,7 +24,7 @@ class ExpenseTest {
         assertEquals(Category.MISCELLANEOUS, e.getCategory());
 
         assertEquals(2020, date.getYear());
-        assertEquals(10, date.getMonth());
+        assertEquals(Month.OCTOBER, date.getMonth());
         assertEquals(1, date.getDay());
 
     }
@@ -61,49 +61,49 @@ class ExpenseTest {
 
     @Test
     public void testIsBeforeTypical() {
-        Date date = new Date(2020, 12, 10);
+        Date date = new Date(2020, Month.DECEMBER, 10);
         assertTrue(e.isBefore(date));
     }
 
     @Test
     public void testIsBeforeBoundaryTrue() {
-        Date date = new Date(2020, 10, 2);
+        Date date = new Date(2020, Month.OCTOBER, 2);
         assertTrue(e.isBefore(date));
     }
 
     @Test
     public void testIsBeforeBoundaryFalse() {
-        Date date = new Date(2020, 10, 1);
+        Date date = new Date(2020, Month.OCTOBER, 1);
         assertFalse(e.isBefore(date));
     }
 
     @Test
     public void testIsBeforeFalse() {
-        Date date = new Date(2018, 10, 25);
+        Date date = new Date(2018, Month.OCTOBER, 25);
         assertFalse(e.isBefore(date));
     }
 
     @Test
     public void testIsAfterTypical() {
-        Date date = new Date(2018, 10, 25);
+        Date date = new Date(2018, Month.OCTOBER, 25);
         assertTrue(e.isAfter(date));
     }
 
     @Test
     public void testIsAfterBoundaryTrue() {
-        Date date = new Date(2020, 9, 30);
+        Date date = new Date(2020, Month.SEPTEMBER, 30);
         assertTrue(e.isAfter(date));
     }
 
     @Test
     public void testIsAfterBoundaryFalse() {
-        Date date = new Date(2020, 10, 1);
+        Date date = new Date(2020, Month.OCTOBER, 1);
         assertFalse(e.isAfter(date));
     }
 
     @Test
     public void testIsAfterFalse() {
-        Date date = new Date(2020, 12, 25);
+        Date date = new Date(2020, Month.DECEMBER, 25);
         assertFalse(e.isAfter(date));
     }
 
@@ -125,11 +125,11 @@ class ExpenseTest {
 
     @Test
     public void testSetDate() {
-        Date newDate = new Date(2020, 4, 4);
+        Date newDate = new Date(2020, Month.APRIL, 4);
         e.setDate(newDate);
         Date test = e.getDate();
         assertEquals(2020, test.getYear());
-        assertEquals(4, test.getMonth());
+        assertEquals(Month.APRIL, test.getMonth());
         assertEquals(4, test.getDay());
     }
 

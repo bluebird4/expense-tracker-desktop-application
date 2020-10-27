@@ -41,7 +41,7 @@ public class JsonReader {
 
     // EFFECTS: parses monthly record from JSON object and returns it
     private MonthlyRecord parseRecord(JSONObject jsonObject) {
-        int month = jsonObject.getInt("month");
+        Month month = Month.valueOf(jsonObject.getString("month"));
         int year = jsonObject.getInt("year");
         int budget = jsonObject.getInt("budget");
 

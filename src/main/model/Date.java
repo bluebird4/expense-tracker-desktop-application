@@ -3,13 +3,13 @@ package model;
 // Represents a calendar date
 public class Date {
     private int year;
-    private int month;
+    private Month month;
     private int day;
 
 
     // REQUIRES: date must be valid (year, month, and day must all be given valid values)
     // EFFECTS:  create a date of the given year, month, and day
-    public Date(int y, int m, int d) {
+    public Date(int y, Month m, int d) {
         year = y;
         month = m;
         day = d;
@@ -19,9 +19,9 @@ public class Date {
         if (year < d.getYear()) {
             return true;
         } else if (year == d.getYear()) {
-            if (month < d.getMonth()) {
+            if (isMonthBefore(d.getMonth())) {
                 return true;
-            } else if (month == d.getMonth()) {
+            } else if (isMonthSame(d.getMonth())) {
                 return day < d.getDay();
             } else {
                 return false;
@@ -35,9 +35,9 @@ public class Date {
         if (year > d.getYear()) {
             return true;
         } else if (year == d.getYear()) {
-            if (month > d.getMonth()) {
+            if (isMonthAfter(d.getMonth())) {
                 return true;
-            } else if (month == d.getMonth()) {
+            } else if (isMonthSame(d.getMonth())) {
                 return day > d.getDay();
             } else {
                 return false;
@@ -51,7 +51,7 @@ public class Date {
         year = y;
     }
 
-    public void setMonth(int m) {
+    public void setMonth(Month m) {
         month = m;
     }
 
@@ -63,11 +63,68 @@ public class Date {
         return year;
     }
 
-    public int getMonth() {
+    public Month getMonth() {
         return month;
     }
 
     public int getDay() {
         return day;
+    }
+
+    // EFFECTS: returns true if current month is before given month, otherwise returns false
+    public boolean isMonthBefore(Month month) {
+        int currentMonth = 0;
+        int compareMonth = 0;
+        for (Month m : Month.values()) {
+            currentMonth++;
+            if (m == this.month) {
+                break;
+            }
+        }
+        for (Month m : Month.values()) {
+            compareMonth++;
+            if (m == month) {
+                break;
+            }
+        }
+        return currentMonth < compareMonth;
+    }
+
+    // EFFECTS: returns true if current month and given month are same, otherwise returns false
+    public boolean isMonthSame(Month month) {
+        int currentMonth = 0;
+        int compareMonth = 0;
+        for (Month m : Month.values()) {
+            currentMonth++;
+            if (m == this.month) {
+                break;
+            }
+        }
+        for (Month m : Month.values()) {
+            compareMonth++;
+            if (m == month) {
+                break;
+            }
+        }
+        return currentMonth == compareMonth;
+    }
+
+    // EFFECTS: returns true if current month is after given month, otherwise returns false
+    public boolean isMonthAfter(Month month) {
+        int currentMonth = 0;
+        int compareMonth = 0;
+        for (Month m : Month.values()) {
+            currentMonth++;
+            if (m == this.month) {
+                break;
+            }
+        }
+        for (Month m : Month.values()) {
+            compareMonth++;
+            if (m == month) {
+                break;
+            }
+        }
+        return currentMonth > compareMonth;
     }
 }

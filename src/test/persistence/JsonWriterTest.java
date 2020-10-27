@@ -1,9 +1,6 @@
 package persistence;
 
-import model.Category;
-import model.Date;
-import model.Expense;
-import model.MonthlyRecord;
+import model.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -17,7 +14,7 @@ public class JsonWriterTest extends JsonTest {
     @Test
     public void testWriterInvalidFile() {
         try {
-            MonthlyRecord record = new MonthlyRecord(10, 2020);
+            MonthlyRecord record = new MonthlyRecord(Month.OCTOBER, 2020);
             JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
             writer.open();
             fail("IOException was expected");
@@ -29,7 +26,7 @@ public class JsonWriterTest extends JsonTest {
     @Test
     public void testWriterEmptyRecord() {
         try {
-            MonthlyRecord record = new MonthlyRecord(10, 2020);
+            MonthlyRecord record = new MonthlyRecord(Month.OCTOBER, 2020);
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyRecord.json");
             writer.open();
             writer.write(record);
@@ -37,7 +34,7 @@ public class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyRecord.json");
             record = reader.read();
-            assertEquals(10, record.getMonth());
+            assertEquals(Month.OCTOBER, record.getMonth());
             assertEquals(2020, record.getYear());
             assertEquals(0, record.size());
         } catch (IOException e) {
@@ -48,9 +45,9 @@ public class JsonWriterTest extends JsonTest {
     @Test
     void testWriterGeneralRecord() {
         try {
-            MonthlyRecord record = new MonthlyRecord(10, 2020);
-            Date d1 = new Date(2020, 10, 20);
-            Date d2 = new Date(2020, 10, 15);
+            MonthlyRecord record = new MonthlyRecord(Month.OCTOBER, 2020);
+            Date d1 = new Date(2020, Month.OCTOBER, 20);
+            Date d2 = new Date(2020, Month.OCTOBER, 15);
             record.addExpense(new Expense(1000, d1, "expense 1", Category.CLOTHING));
             record.addExpense(new Expense(2000, d2, "expense 2", Category.TRANSPORTATION));
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralRecord.json");
@@ -60,7 +57,7 @@ public class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterGeneralRecord.json");
             record = reader.read();
-            assertEquals(10, record.getMonth());
+            assertEquals(Month.OCTOBER, record.getMonth());
             assertEquals(2020, record.getYear());
             List<Expense> expenses = record.getExpenses();
             assertEquals(2, expenses.size());

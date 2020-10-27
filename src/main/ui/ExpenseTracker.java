@@ -64,7 +64,7 @@ public class ExpenseTracker {
     // MODIFIES: this
     // EFFECTS:  initializes new record
     private void initializeApp() {
-        record = new MonthlyRecord(10, 2020);
+        record = new MonthlyRecord(Month.OCTOBER, 2020);
         input = new Scanner(System.in);
     }
 
@@ -93,7 +93,7 @@ public class ExpenseTracker {
 
         System.out.print("Enter the day this expense was made on: ");
         int day = input.nextInt();
-        Date date = new Date(2020, 10, day);
+        Date date = new Date(2020, Month.OCTOBER, day);
 
         System.out.print("Enter a label for this expense: ");
         String label = input.next();

@@ -1,9 +1,6 @@
 package persistence;
 
-import model.Category;
-import model.Date;
-import model.Expense;
-import model.MonthlyRecord;
+import model.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -30,7 +27,7 @@ public class JsonReaderTest extends JsonTest {
         JsonReader reader = new JsonReader("./data/testReaderEmptyRecord.json");
         try {
             MonthlyRecord record = reader.read();
-            assertEquals(10, record.getMonth());
+            assertEquals(Month.OCTOBER, record.getMonth());
             assertEquals(2020, record.getYear());
             assertEquals(200000, record.getBudget());
             assertEquals(0, record.size());
@@ -45,15 +42,15 @@ public class JsonReaderTest extends JsonTest {
         try {
             MonthlyRecord record = reader.read();
 
-            assertEquals(10, record.getMonth());
+            assertEquals(Month.OCTOBER, record.getMonth());
             assertEquals(2020, record.getYear());
             assertEquals(200000, record.getBudget());
 
             List<Expense> expenses = record.getExpenses();
             assertEquals(2, expenses.size());
 
-            Date d1 = new Date(2020, 10, 12);
-            Date d2 = new Date(2020, 10, 21);
+            Date d1 = new Date(2020, Month.OCTOBER, 12);
+            Date d2 = new Date(2020, Month.OCTOBER, 21);
             checkExpense(1000, d1, "amazon purchase", Category.SHOPPING, expenses.get(0));
             checkExpense(1500, d2, "lunch", Category.FOOD, expenses.get(1));
         } catch (IOException e) {

@@ -18,10 +18,10 @@ public class MonthlyRecordTest {
 
     @BeforeEach
     public void runBefore() {
-        r = new MonthlyRecord(10, 2020);
-        d1 = new Date(2020, 4, 4);
-        d2 = new Date(2020, 4, 12);
-        d3 = new Date(2020, 4 ,24);
+        r = new MonthlyRecord(Month.OCTOBER, 2020);
+        d1 = new Date(2020, Month.APRIL, 4);
+        d2 = new Date(2020, Month.APRIL, 12);
+        d3 = new Date(2020, Month.APRIL ,24);
         e1 = new Expense(10000, d1, "birthday present", Category.GIFTS);
         e2 = new Expense(2500, d2, "concert ticket", Category.ENTERTAINMENT);
         e3 = new Expense(7500, d3, "weekly groceries", Category.FOOD);
@@ -34,7 +34,7 @@ public class MonthlyRecordTest {
     public void testConstructor() {
         assertEquals(3, r.size());
         assertEquals(MonthlyRecord.DEFAULT_BUDGET, r.getBudget());
-        assertEquals(10, r.getMonth());
+        assertEquals(Month.OCTOBER, r.getMonth());
         assertEquals(2020, r.getYear());
     }
 
@@ -114,7 +114,7 @@ public class MonthlyRecordTest {
 
     @Test
     public void testFilterCategoryTwo() {
-        Date d = new Date(2020, 4, 19);
+        Date d = new Date(2020, Month.APRIL, 19);
         Expense e = new Expense(5000, d, "birthday present", Category.GIFTS);
         r.addExpense(e);
         MonthlyRecord filtered = r.filterCategory(Category.GIFTS);
@@ -135,7 +135,7 @@ public class MonthlyRecordTest {
 
     @Test
     public void testFilterLabelTwo() {
-        Date d = new Date(2020, 4, 19);
+        Date d = new Date(2020, Month.APRIL, 19);
         Expense e = new Expense(5000, d, "birthday present", Category.GIFTS);
         r.addExpense(e);
         MonthlyRecord filtered = r.filterLabel("birthday present");
@@ -223,7 +223,7 @@ public class MonthlyRecordTest {
 
     @Test
     public void testGetMonth() {
-        assertEquals(10, r.getMonth());
+        assertEquals(Month.OCTOBER, r.getMonth());
     }
 
 }

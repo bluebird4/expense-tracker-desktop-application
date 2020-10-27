@@ -14,13 +14,13 @@ public class MonthlyRecord implements Writable {
 
     private List<Expense> record;
     private int budget;
-    private int month;
+    private Month month;
     private int year;
 
 
     // REQUIRES: all expenses should be in the same month
     // EFFECTS:  creates a list of expenses in a given calendar month and year with default budget
-    public MonthlyRecord(int month, int year) {
+    public MonthlyRecord(Month month, int year) {
         record = new ArrayList<>();
         budget = DEFAULT_BUDGET;
         this.month = month;
@@ -63,7 +63,7 @@ public class MonthlyRecord implements Writable {
 
     // EFFECTS:  returns a list of expenses with cost >= threshold
     public MonthlyRecord aboveThreshold(int threshold) {
-        MonthlyRecord above = new MonthlyRecord(0, 0);
+        MonthlyRecord above = new MonthlyRecord(Month.NOVEMBER, 2020);
 
         for (Expense e : record) {
             if (e.isAboveThreshold(threshold)) {
@@ -76,7 +76,7 @@ public class MonthlyRecord implements Writable {
 
     // EFFECTS:  returns a list of expenses with costs <= threshold
     public MonthlyRecord belowThreshold(int threshold) {
-        MonthlyRecord below = new MonthlyRecord(0, 0);
+        MonthlyRecord below = new MonthlyRecord(Month.NOVEMBER, 2020);
 
         for (Expense e : record) {
             if (e.isBelowThreshold(threshold)) {
@@ -89,7 +89,7 @@ public class MonthlyRecord implements Writable {
 
     // EFFECTS:  returns a list of expenses with the given category
     public MonthlyRecord filterCategory(Category c) {
-        MonthlyRecord filtered = new MonthlyRecord(0, 0);
+        MonthlyRecord filtered = new MonthlyRecord(Month.NOVEMBER, 2020);
 
         for (Expense e : record) {
             if (e.isOfCategory(c)) {
@@ -102,7 +102,7 @@ public class MonthlyRecord implements Writable {
 
     // EFFECTS:  returns a list of expenses with the given label
     public MonthlyRecord filterLabel(String l) {
-        MonthlyRecord filtered = new MonthlyRecord(0, 0);
+        MonthlyRecord filtered = new MonthlyRecord(Month.NOVEMBER, 2020);
 
         for (Expense e : record) {
             if (e.getLabel().equals(l)) {
@@ -191,7 +191,7 @@ public class MonthlyRecord implements Writable {
         return year;
     }
 
-    public int getMonth() {
+    public Month getMonth() {
         return month;
     }
 
