@@ -1,0 +1,19 @@
+{
+    "month": 10,
+    "year": 2020,
+    "budget": 200000,
+    "expenses": [
+        {
+            "cost": 1000,
+            "label": "expense 1",
+            "category": "CLOTHING",
+            "day": 20
+        },
+        {
+            "cost": 2000,
+            "label": "expense 2",
+            "category": "TRANSPORTATION",
+            "day": 15
+        }
+    ]
+}

@@ -1,11 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 // Represents a record of expenses tracked in a given calendar month with a budget
-public class MonthlyRecord {
+public class MonthlyRecord implements Writable {
     public static final int DEFAULT_BUDGET = 200000;
 
     private List<Expense> record;
@@ -189,6 +193,27 @@ public class MonthlyRecord {
 
     public int getMonth() {
         return month;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("month", month);
+        json.put("year", year);
+        json.put("budget", budget);
+        json.put("expenses", expensesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns expenses in monthly record as a JSON array
+    private JSONArray expensesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Expense e : record) {
+            jsonArray.put(e.toJson());
+        }
+
+        return jsonArray;
     }
 
 }

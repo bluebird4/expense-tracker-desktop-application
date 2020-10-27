@@ -1,4 +1,7 @@
 {
+  "month": 10,
+  "year": 2020,
+  "budget": 200000,
   "expenses": [
     {
       "cost": 1000,
@@ -12,8 +15,5 @@
       "label": "lunch",
       "category": "FOOD"
     }
-  ],
-  "month": 10,
-  "year": 2020,
-  "budget": 200000
+  ]
 }

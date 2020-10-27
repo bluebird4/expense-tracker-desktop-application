@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a tracked expense
-public class Expense {
+public class Expense implements Writable {
     private int cost;                 // The cost of the expense in cents
     private Date date;                // The date the expense was made on
     private String label;             // A custom label the user may give to the expense
@@ -84,6 +87,16 @@ public class Expense {
 
     public Category getCategory() {
         return category;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("cost", cost);
+        json.put("day", date.getDay());
+        json.put("label", label);
+        json.put("category", category);
+        return json;
     }
 
 }
