@@ -15,6 +15,7 @@ public class Date {
         day = d;
     }
 
+    // EFFECTS: returns true if the current date is before the given date, otherwise returns false
     public boolean isBefore(Date d) {
         if (year < d.getYear()) {
             return true;
@@ -31,6 +32,7 @@ public class Date {
         }
     }
 
+    // EFFECTS: returns true if the current date is after the given date, otherwise returns false
     public boolean isAfter(Date d) {
         if (year > d.getYear()) {
             return true;

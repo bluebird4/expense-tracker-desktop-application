@@ -170,13 +170,7 @@ public class MonthlyRecord implements Writable {
 
     // EFFECTS: returns the number of expenses in the record
     public int size() {
-        int count = 0;
-
-        for (Expense e : record) {
-            count++;
-        }
-
-        return count;
+        return record.size();
     }
 
     public int getBudget() {
