@@ -1,13 +1,22 @@
 package ui;
 
 import model.*;
+import model.exception.RecordAlreadyExistsException;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import javax.sound.midi.Track;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Expense tracker application
 public class ExpenseTracker {
+    private TrackedRecords records;
     private MonthlyRecord record;
     private Scanner input;
+    private JsonWriter writer;
+    private JsonReader reader;
 
     // EFFECTS: runs the expense tracker application
     public ExpenseTracker() {
@@ -35,6 +44,7 @@ public class ExpenseTracker {
             }
         }
 
+        saveToFile();
         System.out.println("\nExiting app... goodbye!");
     }
 
@@ -55,6 +65,9 @@ public class ExpenseTracker {
             case "v":
                 viewRecord();
                 break;
+            case "s":
+                switchRecord();
+                break;
             default:
                 System.out.println("Your selection was not valid. Please make another selection...");
                 break;
@@ -64,18 +77,29 @@ public class ExpenseTracker {
     // MODIFIES: this
     // EFFECTS:  initializes new record
     private void initializeApp() {
-        record = new MonthlyRecord(Month.OCTOBER, 2020);
         input = new Scanner(System.in);
+        records = new TrackedRecords();
+        promptUser();
+    }
+
+    // MODIFIES: this
+    // EFFECTS:  prompts user at startup to choose a month to track expenses in
+    private void promptUser() {
+        System.out.println("Hello! Welcome to your Expense Tracker.");
+        switchRecord();
     }
 
     // EFFECTS: displays menu of options to user
     // method layout taken and edited from TellerApp
     private void displayMenu() {
-        System.out.println("\nSelect from:");
+        System.out.println("\nYou are currently tracking expenses made in " + record.getMonth()
+                + " " + record.getYear() + ".");
+        System.out.println("Select from:");
         System.out.println("\tn -> new expense");
         System.out.println("\td -> delete expense");
         System.out.println("\tb -> change monthly budget");
         System.out.println("\tv -> view monthly record");
+        System.out.println("\ts -> track a different month");
         System.out.println("\tq -> quit application");
     }
 
@@ -144,7 +168,37 @@ public class ExpenseTracker {
     // EFFECTS:  displays stored record for the month
     private void viewRecord() {
         System.out.println("Here is the current record for this month:\n");
+        System.out.println("Your current budget is " + record.toDollars(record.getBudget()));
         System.out.println(record.printRecord());
+        System.out.println("Your current tracked expenses for this month total up to "
+                + record.toDollars(record.totalExpenses()));
+    }
+
+    // MODIFIES: this
+    // EFFECTS:  switches currently tracked record to a new or different record
+    private void switchRecord() {
+        if (record != null) {
+            saveToFile();
+        }
+        System.out.println("Please enter a month to track: ");
+        String command = input.next();
+        Month month = Month.valueOf(command.toUpperCase());
+        System.out.println("Please enter the year to track: ");
+        int year = input.nextInt();
+        MonthlyRecord r = new MonthlyRecord(month, year);
+        try {
+            records.addRecord(r);
+            record = r;
+            writer = new JsonWriter(records.generateFilePath(month, year));
+        } catch (RecordAlreadyExistsException e) {
+            reader = new JsonReader(records.generateFilePath(month, year));
+            writer = new JsonWriter(records.generateFilePath(month, year));
+            try {
+                record = reader.read();
+            } catch (IOException ioException) {
+                System.out.println("Error: file could not be read.");
+            }
+        }
     }
 
     // MODIFIES: this
@@ -158,4 +212,18 @@ public class ExpenseTracker {
             num++;
         }
     }
+
+    // MODIFIES: this
+    // EFFECTS:  saves current record to file
+    private void saveToFile() {
+        writer = new JsonWriter(records.generateFilePath(record.getMonth(), record.getYear()));
+        try {
+            writer.open();
+        } catch (FileNotFoundException e) {
+            System.out.println("There was an error trying to save the file.");
+        }
+        writer.write(record);
+        writer.close();
+    }
+
 }

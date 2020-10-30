@@ -49,6 +49,11 @@ public class TrackedRecordsTest {
     }
 
     @Test
+    public void testRecordExistsFileExists() {
+        assertTrue(tr.recordExists(Month.NOVEMBER, 2020));
+    }
+
+    @Test
     public void testAddRecordSuccessful() {
         try {
             assertEquals(3, tr.size());

@@ -2,7 +2,6 @@ package model;
 
 import model.exception.RecordAlreadyExistsException;
 import model.exception.RecordNonexistentException;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.record.Record;
 import persistence.JsonReader;
 
 import java.io.IOException;
@@ -30,11 +29,11 @@ public class TrackedRecords {
             }
         }
         try {
-            MonthlyRecord newRecord = reader.read();
+            reader.read();
+            return true;
         } catch (IOException e) {
             return false;
         }
-        return true;
     }
 
     // MODIFIES: this

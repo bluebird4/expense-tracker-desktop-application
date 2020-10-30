@@ -210,4 +210,16 @@ public class MonthlyRecord implements Writable {
         return jsonArray;
     }
 
+    // EFFECTS: return value of cents in dollars as a string
+    public String toDollars(int value) {
+        String dollars = String.valueOf(value / 100);
+        String cents = String.valueOf(value % 100);
+
+        if (cents.length() == 1) {
+            cents = "0" + cents;
+        }
+
+        return "$" + dollars + "." + cents;
+    }
+
 }

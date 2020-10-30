@@ -226,4 +226,14 @@ public class MonthlyRecordTest {
         assertEquals(Month.OCTOBER, r.getMonth());
     }
 
+    @Test
+    public void testToDollarsLeadingZeros() {
+        r.setBudget(123456);
+        assertEquals("$1234.56", r.toDollars(r.getBudget()));
+    }
+
+    @Test
+    public void testToDollarsNoLeadingZeros() {
+        assertEquals("$2000.00", r.toDollars(r.getBudget()));    }
+
 }
