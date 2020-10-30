@@ -40,7 +40,7 @@ public class TrackedRecordsTest {
 
     @Test
     public void testRecordExistsTrue() {
-        assertTrue(tr.recordExists(Month.APRIL, 2020));
+        assertTrue(tr.recordExists(Month.JUNE, 2020));
     }
 
     @Test
@@ -51,6 +51,11 @@ public class TrackedRecordsTest {
     @Test
     public void testRecordExistsFileExists() {
         assertTrue(tr.recordExists(Month.NOVEMBER, 2020));
+    }
+
+    @Test
+    public void testRecordExistsWrongYear() {
+        assertFalse(tr.recordExists(Month.JUNE, 2018));
     }
 
     @Test

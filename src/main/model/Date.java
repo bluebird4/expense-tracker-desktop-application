@@ -77,56 +77,62 @@ public class Date {
     public boolean isMonthBefore(Month month) {
         int currentMonth = 0;
         int compareMonth = 0;
+        int currentMonthValue = 0;
+        int compareMonthValue = 0;
         for (Month m : Month.values()) {
             currentMonth++;
             if (m == this.month) {
-                break;
+                currentMonthValue = currentMonth;
             }
         }
         for (Month m : Month.values()) {
             compareMonth++;
             if (m == month) {
-                break;
+                compareMonthValue = compareMonth;
             }
         }
-        return currentMonth < compareMonth;
+        return currentMonthValue < compareMonthValue;
     }
 
     // EFFECTS: returns true if current month and given month are same, otherwise returns false
     public boolean isMonthSame(Month month) {
         int currentMonth = 0;
         int compareMonth = 0;
+        int currentMonthValue = 0;
+        int compareMonthValue = 0;
         for (Month m : Month.values()) {
             currentMonth++;
             if (m == this.month) {
-                break;
+                currentMonthValue = currentMonth;
             }
         }
         for (Month m : Month.values()) {
             compareMonth++;
             if (m == month) {
-                break;
+                compareMonthValue = compareMonth;
             }
         }
-        return currentMonth == compareMonth;
+        return currentMonthValue == compareMonthValue;
     }
 
     // EFFECTS: returns true if current month is after given month, otherwise returns false
     public boolean isMonthAfter(Month month) {
         int currentMonth = 0;
         int compareMonth = 0;
+        int currentMonthValue = 0;
+        int compareMonthValue = 0;
         for (Month m : Month.values()) {
             currentMonth++;
             if (m == this.month) {
-                break;
+                currentMonthValue = currentMonth;
             }
         }
         for (Month m : Month.values()) {
             compareMonth++;
             if (m == month) {
-                break;
+                compareMonthValue = compareMonth;
             }
         }
-        return currentMonth > compareMonth;
+        return currentMonthValue > compareMonthValue;
     }
 }
