@@ -5,7 +5,6 @@ import model.exception.RecordAlreadyExistsException;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
-import javax.sound.midi.Track;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
@@ -52,25 +51,22 @@ public class ExpenseTracker {
     // EFFECTS:  processes user command
     // method layout taken and edited from TellerApp
     private void processCommand(String command) {
-        switch (command) {
-            case "n":
-                newExpense();
-                break;
-            case "d":
-                deleteExpense();
-                break;
-            case "b":
-                changeBudget();
-                break;
-            case "v":
-                viewRecord();
-                break;
-            case "s":
-                switchRecord();
-                break;
-            default:
-                System.out.println("Your selection was not valid. Please make another selection...");
-                break;
+        if (command.equals("n")) {
+            newExpense();
+        } else if (command.equals("d")) {
+            deleteExpense();
+        } else if (command.equals("b")) {
+            changeBudget();
+        } else if (command.equals("v")) {
+            viewRecord();
+        } else if (command.equals("t")) {
+            switchRecord();
+        } else if (command.equals("l")) {
+            loadFromFile(record.getMonth(), record.getYear());
+        } else if (command.equals("s")) {
+            saveToFile();
+        } else {
+            System.out.println("Your selection was not valid. Please make another selection...");
         }
     }
 
@@ -99,7 +95,9 @@ public class ExpenseTracker {
         System.out.println("\td -> delete expense");
         System.out.println("\tb -> change monthly budget");
         System.out.println("\tv -> view monthly record");
-        System.out.println("\ts -> track a different month");
+        System.out.println("\tt -> track a different month");
+        System.out.println("\tl -> load record from file");
+        System.out.println("\ts -> save record to file");
         System.out.println("\tq -> quit application");
     }
 
@@ -186,18 +184,17 @@ public class ExpenseTracker {
         System.out.println("Please enter the year to track: ");
         int year = input.nextInt();
         MonthlyRecord r = new MonthlyRecord(month, year);
+        record = r;
         try {
             records.addRecord(r);
-            record = r;
             writer = new JsonWriter(records.generateFilePath(month, year));
         } catch (RecordAlreadyExistsException e) {
-            reader = new JsonReader(records.generateFilePath(month, year));
-            writer = new JsonWriter(records.generateFilePath(month, year));
-            try {
-                record = reader.read();
-            } catch (IOException ioException) {
-                System.out.println("Error: file could not be read.");
-            }
+            System.out.println("Record for the given month and year already exists!");
+            System.out.println("If you don't load from file now, your new expenses will override the saved file upon");
+            System.out.println("attempting to save.");
+            System.out.println("Would you like to load the record from file? Enter y or n");
+            command = input.next();
+            chooseLoad(command);
         }
     }
 
@@ -223,7 +220,36 @@ public class ExpenseTracker {
             System.out.println("There was an error trying to save the file.");
         }
         writer.write(record);
+        System.out.println("Record has been saved to file!");
         writer.close();
+    }
+
+    // MODIFIES: this
+    // EFFECTS:  loads record from file
+    private void loadFromFile(Month month, int year) {
+        reader = new JsonReader(records.generateFilePath(month, year));
+        writer = new JsonWriter(records.generateFilePath(month, year));
+        try {
+            record = reader.read();
+        } catch (IOException ioException) {
+            System.out.println("Error: file could not be read.");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS:  process user prompt on whether to load existing record from file or create new record
+    private void chooseLoad(String command) {
+        boolean keepGoing = true;
+        while (keepGoing) {
+            if (command.equals("y")) {
+                loadFromFile(record.getMonth(), record.getYear());
+                keepGoing = false;
+            } else if (command.equals("n")) {
+                keepGoing = false;
+            } else {
+                System.out.println("Your input was invalid! Please enter y or n.");
+            }
+        }
     }
 
 }

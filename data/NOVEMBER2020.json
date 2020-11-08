@@ -1,19 +1,6 @@
 {
     "month": "NOVEMBER",
     "year": 2020,
-    "budget": 250000,
-    "expenses": [
-        {
-            "cost": 2500,
-            "label": "dinner",
-            "category": "FOOD",
-            "day": 10
-        },
-        {
-            "cost": 2000,
-            "label": "present",
-            "category": "GIFTS",
-            "day": 23
-        }
-    ]
+    "budget": 200000,
+    "expenses": []
 }
