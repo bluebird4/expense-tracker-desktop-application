@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-// Expense tracker application
+// Console implementation of expense tracker application
 public class ExpenseTracker {
     private TrackedRecords records;
     private MonthlyRecord record;
