@@ -12,14 +12,14 @@ import java.util.List;
 // GUI implementation of expense tracker application
 // based off of DrawingEditor class in DrawingEditor
 public class TrackerApp extends JFrame {
-    private static final int WIDTH = 900;
-    private static final int HEIGHT = 700;
+    private static final int WIDTH = 400;
+    private static final int HEIGHT = 650;
 
     private List<Option> options;
     private Option activeOption;
 
-    private TrackedRecords trackedRecords;
-    private MonthlyRecord currentRecord;
+    public TrackedRecords trackedRecords;
+    public MonthlyRecord currentRecord;
 
     // constructor taken and repurposed from DrawingEditor
     public TrackerApp() {
@@ -54,11 +54,12 @@ public class TrackerApp extends JFrame {
     // method taken and repurposed from DrawingEditor
     private void initializeMenuButtons() {
         JPanel menuArea = new JPanel();
-        menuArea.setLayout(new GridLayout(8, 1));
+        menuArea.setLayout(new GridLayout(6, 1));
         menuArea.setSize(new Dimension(0, 0));
-        add(menuArea, BorderLayout.WEST);
+        add(menuArea);
 
-        JLabel topLabel = new JLabel("\t\tWelcome! Please choose an option from below:");
+        JLabel topLabel = new JLabel("Welcome! Please choose an option from below:");
+        topLabel.setHorizontalAlignment(JLabel.CENTER);
         menuArea.add(topLabel);
 
         AddExpense addExpense = new AddExpense(this, menuArea);
@@ -75,12 +76,6 @@ public class TrackerApp extends JFrame {
 
         SwitchRecord switchRecord = new SwitchRecord(this, menuArea);
         options.add(switchRecord);
-
-        SaveRecord saveRecord = new SaveRecord(this, menuArea);
-        options.add(saveRecord);
-
-        LoadRecord loadRecord = new LoadRecord(this, menuArea);
-        options.add(loadRecord);
     }
 
     // MODIFIES: this
