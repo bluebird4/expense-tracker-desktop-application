@@ -81,16 +81,17 @@ public class AddExpense extends Option {
             } else if (command.equals("add")) {
                 addExpense();
                 confirmAdded();
-                expenseWindow.dispatchEvent(new WindowEvent(expenseWindow, WindowEvent.WINDOW_CLOSING));
             }
         }
 
+        // EFFECTS: adds a short delay after add button is clicked before closing window
         private void confirmAdded() {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException interruptedException) {
                 System.out.println("InterruptedException thrown");
             }
+            expenseWindow.dispatchEvent(new WindowEvent(expenseWindow, WindowEvent.WINDOW_CLOSING));
         }
 
         // MODIFIES: expenseWindow

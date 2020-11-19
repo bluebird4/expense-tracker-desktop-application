@@ -20,6 +20,12 @@
             "label": "label",
             "category": "MISCELLANEOUS",
             "day": 19
+        },
+        {
+            "cost": 1999,
+            "label": "label",
+            "category": "EDUCATION",
+            "day": 19
         }
     ]
 }
