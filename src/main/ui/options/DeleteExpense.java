@@ -233,11 +233,11 @@ public class DeleteExpense extends Option {
                     trackerApp.currentRecord.getYear()));
             try {
                 writer.open();
+                playSound("data/alert.wav");
             } catch (FileNotFoundException e) {
                 System.out.println("There was an error trying to save the file.");
             }
             writer.write(trackerApp.currentRecord);
-            System.out.println("Record saved to file.");
             writer.close();
         }
 

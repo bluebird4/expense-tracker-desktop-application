@@ -20,6 +20,30 @@
             "label": "label",
             "category": "EDUCATION",
             "day": 19
+        },
+        {
+            "cost": 2000,
+            "label": "tuition",
+            "category": "BILLS",
+            "day": 19
+        },
+        {
+            "cost": 1950,
+            "label": "label",
+            "category": "CLOTHING",
+            "day": 19
+        },
+        {
+            "cost": 3000,
+            "label": "test",
+            "category": "EDUCATION",
+            "day": 19
+        },
+        {
+            "cost": 2000,
+            "label": "label",
+            "category": "BILLS",
+            "day": 19
         }
     ]
 }
