@@ -162,7 +162,7 @@ public class DeleteExpense extends Option {
         // EFFECTS:  draws the JFrame window where this TrackerApp will operate
         // method taken and repurposed from DrawingEditor
         private void initializeNewWindow() {
-            expenseWindow = new JFrame("New Expense");
+            expenseWindow = new JFrame("Delete Expense");
             panel = new JPanel();
 
             expenseWindow.setLayout(new BorderLayout());
