@@ -138,7 +138,7 @@ public class SwitchRecord extends Option {
 
             switchWindow.setLayout(new BorderLayout());
             switchWindow.setMinimumSize(new Dimension(WIDTH, HEIGHT));
-            switchWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            switchWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             switchWindow.setLocationRelativeTo(null);
             switchWindow.setVisible(true);
         }

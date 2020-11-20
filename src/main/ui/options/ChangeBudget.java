@@ -35,7 +35,7 @@ public class ChangeBudget extends Option {
         //          called by the framework when the button is clicked
         @Override
         public void actionPerformed(ActionEvent e) {
-            trackerApp.setActiveOption(ChangeBudget.this);
+            // stub
         }
     }
 

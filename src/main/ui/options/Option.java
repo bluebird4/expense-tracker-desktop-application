@@ -9,13 +9,11 @@ import javax.swing.*;
 public abstract class Option {
     protected JButton button;
     protected TrackerApp trackerApp;
-    private boolean active;
 
     public Option(TrackerApp trackerApp, JComponent parent) {
         this.trackerApp = trackerApp;
         createButton(parent);
         addToParent(parent);
-        active = false;
         addListener();
     }
 
@@ -24,20 +22,6 @@ public abstract class Option {
 
     // EFFECTS: adds a listener for this Option
     protected abstract void addListener();
-
-    public boolean isActive() {
-        return active;
-    }
-
-    // EFFECTS: sets this Option's active field to true
-    public void activate() {
-        active = true;
-    }
-
-    // EFFECTS: sets this Option's active field to false
-    public void deactivate() {
-        active = false;
-    }
 
     // MODIFIES: parent
     // EFFECTS:  adds the given button to the parent component

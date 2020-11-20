@@ -27,7 +27,7 @@ public class AddExpense extends Option {
     @Override
     protected void createButton(JComponent parent) {
         button = new JButton("Add New Expense");
-        button.setActionCommand("open");
+        button.setActionCommand("openAdd");
         addToParent(parent);
     }
 
@@ -65,7 +65,7 @@ public class AddExpense extends Option {
         public void actionPerformed(ActionEvent e) {
             String command = e.getActionCommand();
 
-            if (command.equals("open")) {
+            if (command.equals("openAdd")) {
                 initializeNewWindow();
 
                 if (trackerApp.currentRecord == null) {
@@ -103,7 +103,7 @@ public class AddExpense extends Option {
 
             expenseWindow.setLayout(new BorderLayout());
             expenseWindow.setMinimumSize(new Dimension(WIDTH, HEIGHT));
-            expenseWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            expenseWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             expenseWindow.setLocationRelativeTo(null);
             expenseWindow.setVisible(true);
         }

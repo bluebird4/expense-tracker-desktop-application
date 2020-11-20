@@ -78,11 +78,4 @@ public class TrackerApp extends JFrame {
         options.add(switchRecord);
     }
 
-    // MODIFIES: this
-    // EFFECTS:  sets the given option as the activeOption
-    public void setActiveOption(Option option) {
-        activeOption.activate();
-        activeOption = option;
-    }
-
 }

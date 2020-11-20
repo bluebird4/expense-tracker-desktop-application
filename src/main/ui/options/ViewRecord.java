@@ -124,7 +124,7 @@ public class ViewRecord extends Option {
 
             viewWindow.setLayout(new BorderLayout());
             viewWindow.setMinimumSize(new Dimension(WIDTH, HEIGHT));
-            viewWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            viewWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             viewWindow.setLocationRelativeTo(null);
             viewWindow.setVisible(true);
         }
