@@ -269,6 +269,7 @@ public class AddExpense extends Option {
         }
 
         // EFFECTS: creates a MaskFormatter for use in JFormattedTextField givenYear
+        // method taken from https://docs.oracle.com/javase/tutorial/uiswing/components/formattedtextfield.html
         private MaskFormatter createFormatter() {
             MaskFormatter formatter = null;
             try {
