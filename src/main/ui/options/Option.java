@@ -34,6 +34,7 @@ public abstract class Option {
     }
 
     // EFFECTS: plays a sound from a file
+    // sound used for autosave indicator ("alert.wav") found on ZapSplat.com
     // method from http://suavesnippets.blogspot.com/2011/06/add-sound-on-jbutton-click-in-java.html
     public void playSound(String soundName) {
         try {
