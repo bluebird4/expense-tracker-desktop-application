@@ -80,7 +80,10 @@ public class ViewRecord extends Option {
             JLabel budgetInfo = new JLabel("<html>Your current budget is "
                     + trackerApp.currentRecord.toDollars(trackerApp.currentRecord.getBudget()) + ".<br>"
                     + "Your current tracked expenses for this month total up to "
-                    + trackerApp.currentRecord.toDollars(trackerApp.currentRecord.totalExpenses()) + ".</html>");
+                    + trackerApp.currentRecord.toDollars(trackerApp.currentRecord.totalExpenses()) + ".<br>"
+                    + "You have " + trackerApp.currentRecord.toDollars(trackerApp.currentRecord.getBudget()
+                        - trackerApp.currentRecord.totalExpenses())
+                    + " remaining in your budget for this month.</html>");
             expenseView = new JTextArea();
             display = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                     JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

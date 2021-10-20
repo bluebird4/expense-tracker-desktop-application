@@ -4,26 +4,22 @@ An application to track personal expenses and assist in keeping a monthly budget
 is meant for use by the general population, aimed specifically at those new to expense tracking and
 budgeting.
 
-I chose to create this application as my project because I have little experience in tracking my
-expenses, and I would like to start doing so. I don't like any of the expense tracker applications
-that are currently available for use, and I would like something more refined than a spreadsheet,
-so I decided to make my own application for this purpose.
+This application was created as a project for a second-year software construction course. I chose
+this specific application because I had little experience in tracking my expenses, and I wanted to
+start doing so. I didn't like any of the expense tracker applications that were available for use
+at the time, and I also wanted something more refined than a spreadsheet, so I decided to make my
+own application for this purpose.
 
-## Planned Features
+The code in this application is exactly as it was when I submitted it for final grading in my course,
+so there are not many features, and I do not currently plan on adding any new features to it. Rather,
+I am planning to create a mobile app as a replacement.
 
-Some features I have planned so far for this project include:
-- Specify purchase dates
-- Warn the user once they reach a user-defined threshold of spending within their budget
-- A more detailed overview of monthly spending, including graphs and other visualizations
-- Edit expenses/expense categories that have already been tracked
-- Allow the user to add custom categories for expenses
+## Application Features
 
-## User Stories
-
-- As a user, I want to be able to add a purchase to my monthly record
-- As a user, I want to be able to view my expenses across a month
-- As a user, I want to be able to set a monthly budget
-- As a user, I want to be able to categorize my expenses
-- As a user, I want my monthly record to be saved automatically to file after making changes
-- As a user, I want my monthly record to be loaded automatically from file at application startup
-- As a user, I want to be notified with a sound when my record is autosaved
+- Add a purchase to a monthly record
+- View expenses across a month
+- Set a monthly budget
+- Categorize expenses
+- Save monthly record automatically to file after making changes
+- Load monthly record automatically from file at application startup
+- Notification sound is played when record is autosaved
